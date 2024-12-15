@@ -9,3 +9,4 @@ class VolunteerManagementApplication
 fun main(args: Array<String>) {
     runApplication<VolunteerManagementApplication>(*args)
 }
+
