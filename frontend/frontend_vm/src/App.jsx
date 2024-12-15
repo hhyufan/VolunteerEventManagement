@@ -4,6 +4,7 @@ import './App.css';
 import Layout from './layout/Layout'; // 引入 Layout 组件
 import VolunteerEventsList from "./components/VolunteerEventsList.jsx";
 import HomePage from "./pages/HomePage.jsx";
+import EventsManagerList from "./components/EventsManagerList.jsx";
 // 示例事件数据
 const sampleEvents = [
     {
@@ -34,7 +35,8 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<Layout events={sampleEvents} />}>
                     <Route index element={<HomePage />} />
-                    <Route path="volunteer-event" element={<VolunteerEventsList/>} />
+                    <Route path="events_vm" element={<VolunteerEventsList/>} />
+                    <Route path="events_manager" element={<EventsManagerList/>} />
                 </Route>
             </Routes>
         </BrowserRouter>

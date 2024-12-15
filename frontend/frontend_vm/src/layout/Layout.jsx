@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faUsers, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { AppBar, Toolbar, Typography, Button, Drawer, List, ListItem, ListItemIcon, ListItemText, Box } from '@mui/material';
 import LoginForm from '../components/LoginForm.jsx';
 import RegisterForm from '../components/RegisterForm.jsx';
@@ -80,7 +80,11 @@ const Layout = ({events}) => {
                                 <ListItemIcon><FontAwesomeIcon icon={faHome} /></ListItemIcon>
                                 <ListItemText primary="首页" />
                             </ListItem>
-                            <ListItem button component={Link} to="/volunteer-event" className="nav-link">
+                            <ListItem button component={Link} to="/events_vm" className="nav-link">
+                                <ListItemIcon><FontAwesomeIcon icon={faUsers} /></ListItemIcon>
+                                <ListItemText primary="所有活动" />
+                            </ListItem>
+                            <ListItem button component={Link} to="/events_manager" className="nav-link">
                                 <ListItemIcon><FontAwesomeIcon icon={faUsers} /></ListItemIcon>
                                 <ListItemText primary="管理活动" />
                             </ListItem>

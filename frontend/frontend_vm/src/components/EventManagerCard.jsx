@@ -1,5 +1,13 @@
 // VolunteerEventCard.jsx
-import {Card, CardContent, CardMedia, Typography, Button, FormControlLabel, Switch, Box} from '@mui/material';
+import {
+    Card,
+    CardContent,
+    CardMedia,
+    Typography,
+    Button,
+    Box,
+    FormControlLabel, Checkbox
+} from '@mui/material';
 import {useState} from "react";
 
 // eslint-disable-next-line react/prop-types
@@ -9,9 +17,8 @@ const VolunteerEventCard = ({ event }) => {
     if (!event) {
         return <Typography variant="h6">活动不存在</Typography>;
     }
-
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [checked, setChecked] = useState(false);
+    const [checked, setChecked] = useState(false); // 复选框的状态
 
     const handleChange = (event) => {
         // eslint-disable-next-line react/prop-types
@@ -54,8 +61,10 @@ const VolunteerEventCard = ({ event }) => {
                         </Button>
                     )}
                     <FormControlLabel
-                        control={<Switch checked={checked} onChange={handleChange} />}
-                        label={checked ? '取消活动' : '添加活动'}
+                        control={
+                            <Checkbox checked={checked} onChange={handleChange} />
+                        }
+                        label={checked ? '撤销完成' : '设置完成'}
                     />
                 </Box>
 
