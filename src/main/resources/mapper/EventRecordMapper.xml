@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "- //mybatis.org//DTD Config 3.0//EN"
+        "Http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.EventRecordMapper">
+    <!-- 定义 resultMap -->
+    <resultMap id="eventRecordResultMap" type="com.example.domain.EventRecord">
+        <id property="id" column="id"/>
+        <result property="volunteerId" column="volunteer_id"/> <!-- 这里将 volunteerId 映射到 volunteer_id -->
+        <result property="eventId" column="event_id"/>
+        <result property="completed" column="completed"/>
+    </resultMap>
+    <!-- 查询当前志愿者的所有活动记录 -->
+    <select id="findAllByVolunteerId" parameterType="long" resultMap="eventRecordResultMap">
+        SELECT * FROM event_record WHERE volunteer_id = #{volunteerId}
+    </select>
+
+    <!-- 查询当前志愿者的所有已完成活动 -->
+    <select id="findCompletedByVolunteerId" parameterType="long" resultMap="eventRecordResultMap">
+        SELECT * FROM event_record WHERE volunteer_id = #{volunteerId} AND completed = TRUE
+    </select>
+
+    <!-- 插入活动记录 -->
+    <insert id="insert" parameterType="com.example.domain.EventRecord">
+        INSERT INTO event_record (volunteer_id, event_id, completed) VALUES
+        (#{volunteerId}, #{eventId}, #{completed})
+    </insert>
+
+    <!-- 更新活动记录的完成状态 -->
+    <update id="updateCompletionStatus">
+        UPDATE event_record
+        SET completed = #{completed}
+        WHERE volunteer_id = #{volunteerId} AND event_id = #{eventId}
+    </update>
+</mapper>

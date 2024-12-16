@@ -1,0 +1,103 @@
+### 获取所有志愿者
+GET http://localhost:8080/api/volunteer
+Accept: application/json
+
+### 根据 ID 获取志愿者
+GET http://localhost:8080/api/volunteer/1
+Accept: application/json
+
+### 根据姓名获取志愿者
+GET http://localhost:8080/api/volunteer/findByName?name=李四
+Accept: application/json
+
+### 登录管理员
+POST http://localhost:8080/api/volunteer/login
+Content-Type: application/x-www-form-urlencoded
+
+username=李3四&password=your_password
+
+### 注册管理员
+POST http://localhost:5173/api/volunteer/register
+Content-Type: application/json
+
+{
+  "name": "李7四",
+  "password": "your_password",
+  "phone": "13900139000",
+  "email": "lisi@example.com"
+}
+
+### 更新志愿者信息
+PUT http://localhost:8080/api/volunteer/1
+Content-Type: application/json
+
+{
+  "name": "张三",
+  "password": "new_password",
+  "email": "zhangsan@example.com",
+  "phone": "13800138000"
+}
+
+### 删除志愿者
+DELETE http://localhost:8080/api/volunteer/1
+
+
+### 获取所有活动
+GET http://localhost:8080/api/events
+Accept: application/json
+
+### 根据 ID 获取活动
+GET http://localhost:8080/api/events/1
+Accept: application/json
+
+### 创建新活动
+POST http://localhost:8080/api/events
+Content-Type: application/json
+
+{
+  "title": "新年爆竹安全活动",
+  "date": "2024-01-01T10:00:00",
+  "location": "公园",
+  "duration": "3小时",
+  "content": "新年志愿者活动，欢迎大家参与！",
+  "attachmentLink": "http://example.com/attachment1",
+  "imageUrl": "http://example.com/image1.jpg"
+}
+
+### 更新活动
+PUT http://localhost:8080/api/events/4
+Content-Type: application/json
+
+{
+  "title": "新年爆竹安全活动",
+  "date": "2024-01-01T10:00:00",
+  "location": "公园",
+  "duration": "3小时",
+  "content": "防范爆竹安全，人人有责。欢迎大家参与！",
+  "attachmentLink": "http://example.com/attachment1",
+  "imageUrl": "4.jpg"
+}
+
+### 删除活动
+DELETE http://localhost:8080/api/events/4
+
+### 获取当前志愿者的所有活动记录
+GET http://localhost:8080/api/event-records/volunteer/1
+Accept: application/json
+
+### 获取当前志愿者的所有已完成活动
+GET http://localhost:8080/api/event-records/completed/volunteer/1
+Accept: application/json
+
+### 创建新的活动记录
+POST http://localhost:8080/api/event-records
+Content-Type: application/json
+
+{
+  "volunteerId": 1,
+  "eventId": 1,
+  "completed": true
+}
+
+### 设置活动完成状态
+PUT http://localhost:8080/api/event-records/volunteer/1/event/1?completed=true

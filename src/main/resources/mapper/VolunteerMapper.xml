@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "- //mybatis.org//DTD Config 3.0//EN"
+        "Http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.VolunteerMapper">
+    <select id="findAll" resultType="com.example.domain.Volunteer">
+        SELECT * FROM volunteer
+    </select>
+
+    <select id="findById" parameterType="long" resultType="com.example.domain.Volunteer">
+        SELECT * FROM volunteer WHERE id = #{id}
+    </select>
+
+
+    <select id="findByName" parameterType="string" resultType="com.example.domain.Volunteer">
+        SELECT * FROM volunteer WHERE name = #{name}
+    </select>
+
+    <insert id="insert" parameterType="com.example.domain.Volunteer">
+        INSERT INTO volunteer (name, password, email, phone) VALUES (#{name}, #{password}, #{email}, #{phone})
+    </insert>
+
+    <update id="update" parameterType="com.example.domain.Volunteer">
+        UPDATE volunteer SET name = #{name}, password = #{password}, email = #{email}, phone = #{phone} WHERE id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="long">
+        DELETE FROM volunteer WHERE id = #{id}
+    </delete>
+</mapper>

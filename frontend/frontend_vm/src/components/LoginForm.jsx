@@ -13,10 +13,10 @@ const LoginForm = ({ onClose, onSuccess, setShowRegister }) => {
         e.preventDefault();
         try {
             const response = await loginAdmin(username, password);
-            if (true) {
+            if (response.message === "登录成功") {
                 onSuccess(username);
             } else {
-                setError(response.message || 'Login failed');
+                setError(response.message ?? 'Login failed');
             }
             // eslint-disable-next-line no-unused-vars
         } catch (error) {
