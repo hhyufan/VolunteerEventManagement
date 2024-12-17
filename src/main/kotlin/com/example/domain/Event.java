@@ -16,7 +16,7 @@ public class Event {
     private String title;
     private Date date;
     private String location;
-    private String duration;
+    private Long duration;
     private String content;
     private String attachmentLink;
     private String imageUrl;

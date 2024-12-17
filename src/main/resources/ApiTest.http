@@ -10,6 +10,11 @@ Accept: application/json
 GET http://localhost:8080/api/volunteer/findByName?name=李四
 Accept: application/json
 
+### 获取当前志愿者ID的志愿者成绩
+GET http://localhost:8080/api/volunteer/grade?id=1
+Accept: application/json
+
+
 ### 登录管理员
 POST http://localhost:8080/api/volunteer/login
 Content-Type: application/x-www-form-urlencoded
@@ -40,7 +45,6 @@ Content-Type: application/json
 
 ### 删除志愿者
 DELETE http://localhost:8080/api/volunteer/1
-
 
 ### 获取所有活动
 GET http://localhost:8080/api/events
@@ -88,6 +92,8 @@ Accept: application/json
 ### 获取当前志愿者的所有已完成活动
 GET http://localhost:8080/api/event-records/completed/volunteer/1
 Accept: application/json
+
+
 
 ### 创建新的活动记录
 POST http://localhost:8080/api/event-records

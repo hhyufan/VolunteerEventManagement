@@ -3,8 +3,10 @@ package com.example.controller;
 import com.example.domain.ApiResponse;
 import com.example.domain.Volunteer;
 import com.example.service.VolunteerService;
+import com.example.util.DurationToStringConverter;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Duration;
 import java.util.List;
 @RestController
 @RequestMapping("/api/volunteer")
@@ -64,5 +66,12 @@ public class VolunteerController {
         }
         volunteerService.createVolunteer(volunteer);
         return new ApiResponse("注册成功");
+    }
+
+    @GetMapping("/grade")
+    public String getGrade(@RequestParam Long id) {
+        return DurationToStringConverter.convertToString(
+                Duration.ofSeconds(volunteerService.getVolunteerGrade(id))
+        );
     }
 }

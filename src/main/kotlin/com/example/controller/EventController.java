@@ -1,11 +1,12 @@
 package com.example.controller;
 
-
 import com.example.domain.Event;
+import com.example.dto.EventDTO;
 import com.example.service.EventService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/events")
@@ -17,13 +18,16 @@ public class EventController {
     }
 
     @GetMapping
-    public List<Event> getAllEvents() {
-        return eventService.getAllEvents();
+    public List<EventDTO> getAllEvents() {
+        return eventService.getAllEvents().stream()
+                .map(EventDTO::new)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-    public Event getEventById(@PathVariable Long id) {
-        return eventService.getEventById(id);
+    public EventDTO getEventById(@PathVariable Long id) {
+
+        return new EventDTO(eventService.getEventById(id));
     }
 
     @PostMapping

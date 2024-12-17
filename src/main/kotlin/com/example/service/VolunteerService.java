@@ -8,7 +8,6 @@ import com.example.mapper.EventRecordMapper;
 import com.example.mapper.VolunteerMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -46,7 +45,6 @@ public class VolunteerService {
     }
 
     public Volunteer login(String username, String password) {
-        // 这里假设你在数据库中有一个字段 username
         Volunteer volunteer = volunteerMapper.findByName(username);
         if (volunteer != null && volunteer.getPassword().equals(password)) {
             return volunteer; // 登录成功，返回用户信息
@@ -54,18 +52,18 @@ public class VolunteerService {
         return null; // 登录失败
     }
 
-    public List<String> getVolunteerGrade(Long volunteerId) {
+    public Long getVolunteerGrade(Long volunteerId) {
 
         List<EventRecord> completedRecords = eventRecordMapper.findCompletedByVolunteerId(volunteerId);
-        List<String> durations = new ArrayList<>();
-
+        Long durations = 0L;
         for (EventRecord record : completedRecords) {
             Event event = eventMapper.findById(record.getEventId());
-            if (event != null) {
-                durations.add(event.getDuration()); // 假设 duration 是 String 类型
-            }
+            durations += event.getDuration();
         }
 
         return durations;
+    }
+    public String getVolunteerName(Long volunteerId) {
+        return volunteerMapper.findById(volunteerId).getName();
     }
 }

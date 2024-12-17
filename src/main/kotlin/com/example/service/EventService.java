@@ -33,4 +33,5 @@ public class EventService {
     public void deleteEvent(Long id) {
         eventMapper.delete(id);
     }
+
 }
