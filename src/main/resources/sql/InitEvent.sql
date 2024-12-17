@@ -26,3 +26,6 @@ INSERT INTO Event (title, date, location, duration, content, attachmentLink, ima
  'https://example.com/attachment2', '../imgs/2.jpg'),
 ('义务献血', '2024-02-01T08:00:00.000+00:00', '医院', 14400, '参与义务献血活动，帮助需要帮助的人。',
  'https://example.com/attachment3', '../imgs/3.jpg');
+
+SELECT * FROM volunteer WHERE name = '李四';
+SELECT * FROM event WHERE title = '志愿者活动';

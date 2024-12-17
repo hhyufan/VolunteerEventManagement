@@ -11,6 +11,10 @@
         SELECT * FROM event WHERE id = #{id}
     </select>
 
+    <select id="findByName" parameterType="String" resultType="com.example.domain.Event">
+        SELECT * FROM event WHERE title = #{name}
+    </select>
+
     <insert id="insert" parameterType="com.example.domain.Event">
         INSERT INTO event (title, date, location, duration, content, attachmentLink, imageUrl) VALUES
         (#{title}, #{date}, #{location}, #{duration}, #{content}, #{attachmentLink}, #{imageUrl})

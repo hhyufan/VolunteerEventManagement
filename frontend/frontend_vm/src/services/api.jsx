@@ -44,12 +44,26 @@ export const fetchEvents = async () => {
 };
 
 // 获取当前志愿者的所有活动记录
-export const getAllEventRecordsByVolunteerId = async (volunteerId) => {
+export const getAllEventRecordsByVolunteerName = async (volunteerName) => {
     try {
-        const response = await axios.get(`/api/event-records/volunteer/${volunteerId}`);
+        const response = await axios.get(`/api/event-records/volunteer/${volunteerName}`);
         return response.data;
     } catch (error) {
         console.error('Error fetching event records:', error);
         throw error;
     }
 };
+// 创建新的活动记录
+export const createEventRecord = async (eventName, volunteerName) => {
+    try {
+        const requestBody = {
+            eventName: eventName,
+            volunteerName: volunteerName
+        };
+        await axios.post("/api/event-records", requestBody);
+    } catch (error) {
+        console.error('Error creating event record:', error);
+        throw error; // 抛出错误以便调用者处理
+    }
+};
+

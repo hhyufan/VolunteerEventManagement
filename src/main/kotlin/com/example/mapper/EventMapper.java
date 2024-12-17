@@ -9,6 +9,7 @@ import java.util.List;
 public interface EventMapper {
     List<Event> findAll();
     Event findById(Long id);
+    Event findByName(String name);
     void insert(Event event);
     void update(Event event);
     void delete(Long id);

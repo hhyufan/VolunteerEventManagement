@@ -33,4 +33,8 @@
         SET completed = #{completed}
         WHERE volunteer_id = #{volunteerId} AND event_id = #{eventId}
     </update>
+
+    <delete id="delete" parameterType="long">
+        DELETE FROM event_record WHERE volunteer_id = #{volunteerId} and event_id = #{eventId}
+    </delete>
 </mapper>

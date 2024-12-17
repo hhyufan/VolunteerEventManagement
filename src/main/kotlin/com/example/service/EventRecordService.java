@@ -40,4 +40,8 @@ public class EventRecordService {
     public void setEventCompletionStatus(Long volunteerId, Long eventId, boolean completed) {
         eventRecordMapper.updateCompletionStatus(volunteerId, eventId, completed);
     }
+
+    public void deleteEvent(Long volunteerId, Long eventId) {
+        eventRecordMapper.delete(volunteerId, eventId);
+    }
 }

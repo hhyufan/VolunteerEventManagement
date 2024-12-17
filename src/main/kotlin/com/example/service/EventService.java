@@ -21,6 +21,9 @@ public class EventService {
     public Event getEventById(Long id) {
         return eventMapper.findById(id);
     }
+    public Event getEventByName(String name) {
+        return eventMapper.findByName(name);
+    }
 
     public void createEvent(Event event) {
         eventMapper.insert(event);

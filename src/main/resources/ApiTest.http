@@ -85,24 +85,26 @@ Content-Type: application/json
 ### 删除活动
 DELETE http://localhost:8080/api/events/4
 
+
+### 删除活动记录
+DELETE http://localhost:8080/api/event-records/李四/志愿者活动
+
+
 ### 获取当前志愿者的所有活动记录
-GET http://localhost:8080/api/event-records/volunteer/1
+GET http://localhost:8080/api/event-records/volunteer/YuFan
 Accept: application/json
 
 ### 获取当前志愿者的所有已完成活动
-GET http://localhost:8080/api/event-records/completed/volunteer/1
+GET http://localhost:8080/api/event-records/completed/volunteer/YuFan
 Accept: application/json
-
-
 
 ### 创建新的活动记录
 POST http://localhost:8080/api/event-records
 Content-Type: application/json
 
 {
-  "volunteerId": 1,
-  "eventId": 1,
-  "completed": true
+    "eventName": "志愿者活动",
+    "volunteerName": "YuFan"
 }
 
 ### 设置活动完成状态

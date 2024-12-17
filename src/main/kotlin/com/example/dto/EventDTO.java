@@ -2,6 +2,7 @@ package com.example.dto;
 
 
 import com.example.domain.Event;
+import com.example.util.DateToStringConverter;
 import com.example.util.DurationToStringConverter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,7 +19,7 @@ import java.util.Date;
 public class EventDTO {
     private Long id;
     private String title;
-    private Date date;
+    private String date;
     private String location;
     private String duration;
     private String content;
@@ -28,7 +29,7 @@ public class EventDTO {
         this(
                 event.getId(),
                 event.getTitle(),
-                event.getDate(),
+                DateToStringConverter.convertToString(event.getDate()),
                 event.getLocation(),
                 DurationToStringConverter.convertToString(Duration.ofSeconds(event.getDuration())),
                 event.getContent(),

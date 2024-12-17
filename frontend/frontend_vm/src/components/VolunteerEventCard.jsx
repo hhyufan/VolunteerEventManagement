@@ -1,9 +1,10 @@
 // VolunteerEventCard.jsx
 import {Card, CardContent, CardMedia, Typography, Button, FormControlLabel, Switch, Box} from '@mui/material';
 import {useState} from "react";
+import {createEventRecord} from "../services/api.jsx";
 
 // eslint-disable-next-line react/prop-types
-const VolunteerEventCard = ({ event }) => {
+const VolunteerEventCard = ({ event, user }) => {
     console.log(event);
 
     if (!event) {
@@ -13,13 +14,18 @@ const VolunteerEventCard = ({ event }) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [checked, setChecked] = useState(false);
 
-    const handleChange = (event) => {
-        // eslint-disable-next-line react/prop-types
-        setChecked(event.target.checked);
-    };
 
     // eslint-disable-next-line react/prop-types
     const { title, date, location, duration, content, attachmentLink, imageUrl } = event;
+
+
+    const handleChange = (event) => {
+        // eslint-disable-next-line react/prop-types
+        setChecked(event.target.checked);
+        if (checked) {
+            createEventRecord(title, user);
+        }
+    };
 
     return (
         <Card sx={{minWidth: 275, marginBottom: 2 }}>

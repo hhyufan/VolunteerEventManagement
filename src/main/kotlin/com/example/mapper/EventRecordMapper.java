@@ -9,4 +9,5 @@ public interface EventRecordMapper {
     List<EventRecord> findCompletedByVolunteerId(Long volunteerId);
     void insert(EventRecord eventRecord);
     void updateCompletionStatus(Long volunteerId, Long eventId, boolean completed);
+    void delete(Long volunteerId, Long eventId);
 }
