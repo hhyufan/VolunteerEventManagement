@@ -7,6 +7,8 @@ import HomePage from "./pages/HomePage.jsx";
 import EventsManagerList from "./components/EventsManagerList.jsx";
 import React, {useState} from "react";
 import {fetchEvents} from "./services/api.jsx";
+import VolunteerHomeList from "./components/VolunteerHomeList.jsx";
+import VolunteerInfoForm from "./components/VolunteerInfoForm.jsx";
 
 const App = () => {
     const [events, setEvents] = useState([]);
@@ -25,6 +27,9 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<Layout events={events} />}>
                     <Route index element={<HomePage />} />
+                    <Route path="volunteer-home" element={<VolunteerHomeList events={events} />}  >
+                        <Route path="volunteer-info" element={<VolunteerInfoForm />} />
+                    </Route>
                     <Route path="events_vm" element={<VolunteerEventsList/>} />
                     <Route path="events_manager" element={<EventsManagerList/>} />
                 </Route>

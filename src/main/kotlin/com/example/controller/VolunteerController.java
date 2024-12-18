@@ -69,9 +69,10 @@ public class VolunteerController {
     }
 
     @GetMapping("/grade")
-    public String getGrade(@RequestParam Long id) {
+    public String getGrade(@RequestParam String name) {
+        Long volunteerId = volunteerService.getVolunteerByName(name).getId();
         return DurationToStringConverter.convertToString(
-                Duration.ofSeconds(volunteerService.getVolunteerGrade(id))
+                Duration.ofSeconds(volunteerService.getVolunteerGrade(volunteerId))
         );
     }
 

@@ -17,6 +17,8 @@ export const loginAdmin = async (username, password) => {
     }
 };
 
+
+
 // 注册
 export const registerAdmin = async (username, password, phone, email) => {
     try {
@@ -39,6 +41,30 @@ export const fetchEvents = async () => {
         return response.data;
     } catch (error) {
         console.error('Error fetching volunteers:', error);
+        throw error;
+    }
+};
+
+export const getVolunteerByName = async (name) => {
+    try {
+        const response = await axios.get(`${API_URL}/findByName`, {
+            params: { name }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching volunteer by name:', error);
+        throw error;
+    }
+};
+
+export const getGradeByName = async (name) => {
+    try {
+        const response = await axios.get(`${API_URL}/grade`, {
+            params: { name }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching volunteer by name:', error);
         throw error;
     }
 };

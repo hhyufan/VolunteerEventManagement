@@ -43,7 +43,9 @@ const Layout = ({events}) => {
                     </Typography>
                     {user ? (
                         <Box>
-                            欢迎您, {user}
+                            <Link to="/volunteer-home" style={{ textDecoration: 'none', color: 'inherit', marginRight: '8px' }}>
+                                欢迎您, {user}
+                            </Link>
                             <Button color="inherit" onClick={handleLogout}>退出</Button>
                         </Box>
                     ) : (
