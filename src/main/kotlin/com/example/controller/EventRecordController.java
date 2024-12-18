@@ -45,22 +45,28 @@ public class EventRecordController {
         Long eventId = eventService.getEventByName(request.getEventName()).getId();
         Long volunteerId = volunteerService.getVolunteerByName(request.getVolunteerName()).getId(); // 假设有这个方法
 
-        EventRecord eventRecord = new EventRecord(null, eventId, volunteerId, false);
+        EventRecord eventRecord = new EventRecord(null,  volunteerId, eventId, false);
 
         eventRecordService.createEventRecord(eventRecord);
     }
     // 设置活动完成状态
-    @PutMapping("/volunteer/{volunteerId}/event/{eventId}")
-    public void setEventCompletionStatus(@PathVariable Long volunteerId,
-                                         @PathVariable Long eventId,
+    @PutMapping("/volunteer/{volunteerName}/event/{eventName}")
+    public void setEventCompletionStatus(@PathVariable String volunteerName,
+                                         @PathVariable String eventName,
                                          @RequestParam boolean completed) {
+        Long eventId = eventService.getEventByName(eventName).getId();
+        Long volunteerId = volunteerService.getVolunteerByName(volunteerName).getId();
         eventRecordService.setEventCompletionStatus(volunteerId, eventId, completed);
     }
 
     @DeleteMapping("/{volunteerName}/{eventName}")
     public void deleteEvent(@PathVariable String volunteerName, @PathVariable String eventName) {
-        Long eventId = eventService.getEventByName(volunteerName).getId();
-        Long volunteerId = volunteerService.getVolunteerByName(eventName).getId();
+        System.out.println(volunteerName);
+        System.out.println(eventName);
+        Long eventId = eventService.getEventByName(eventName).getId();
+        Long volunteerId = volunteerService.getVolunteerByName(volunteerName).getId();
+        System.out.println(eventId);
+        System.out.println(volunteerId);
         eventRecordService.deleteEvent(volunteerId, eventId);
     }
 

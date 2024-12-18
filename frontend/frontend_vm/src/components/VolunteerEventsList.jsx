@@ -27,7 +27,7 @@ const VolunteerEventsList = () => {
             <Grid2 container spacing={2}>
                 {events.map((event, index) => (
                     <Grid2 item xs={12} sm={6} md={4} key={index}>
-                        <VolunteerEventCard event={event} user={user} isTitleExist={titles.includes(event.title)}/>
+                        <VolunteerEventCard event={event} user={user} initialChecked={titles.includes(event.title)}/>
                     </Grid2>
                 ))}
             </Grid2>

@@ -8,12 +8,11 @@ import {
     Box,
     FormControlLabel, Checkbox
 } from '@mui/material';
-import {useState} from "react";
-import {createEventRecord} from "../services/api.jsx";
+import {useEffect, useState} from "react";
+import {setEventCompletionStatus} from "../services/api.jsx";
 
 // eslint-disable-next-line react/prop-types
-const VolunteerEventCard = ({ event, user, isTitleExist}) => {
-    console.log(event);
+const VolunteerEventCard = ({ event, user, initialChecked}) => {
 
     if (!event) {
         return <Typography variant="h6">活动不存在</Typography>;
@@ -21,18 +20,21 @@ const VolunteerEventCard = ({ event, user, isTitleExist}) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [checked, setChecked] = useState(false); // 复选框的状态
 
-
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useEffect(() => {
+        setChecked(initialChecked);
+    }, [initialChecked])
     // eslint-disable-next-line react/prop-types
     const { title, date, location, duration, content, attachmentLink, imageUrl } = event;
 
     const handleChange = (event) => {
+
         // eslint-disable-next-line react/prop-types
         setChecked(event.target.checked);
-        if (checked && !isTitleExist) {
-            createEventRecord(title, user);
-        }
-        if (!checked && isTitleExist) {
-            re
+        if (checked) {
+            setEventCompletionStatus(user, title, false)
+        } else {
+            setEventCompletionStatus(user, title, true)
         }
     };
 

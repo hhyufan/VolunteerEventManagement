@@ -1,32 +1,44 @@
 // VolunteerEventCard.jsx
-import {Card, CardContent, CardMedia, Typography, Button, FormControlLabel, Switch, Box} from '@mui/material';
-import {useState} from "react";
-import {createEventRecord} from "../services/api.jsx";
+import {
+    Card,
+    CardContent,
+    CardMedia,
+    Typography,
+    Button,
+    FormControlLabel,
+    Switch,
+    Box
+} from '@mui/material';
+import {createEventRecord, deleteEventRecord} from "../services/api.jsx";
+import {useEffect, useState} from "react";
 
 // eslint-disable-next-line react/prop-types
-const VolunteerEventCard = ({ event, user }) => {
-    console.log(event);
+const VolunteerEventCard = ({ event, user, initialChecked}) => {
 
     if (!event) {
         return <Typography variant="h6">活动不存在</Typography>;
     }
-
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [checked, setChecked] = useState(false);
-
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useEffect(() => {
+        setChecked(initialChecked);
+    }, [initialChecked]);
 
     // eslint-disable-next-line react/prop-types
     const { title, date, location, duration, content, attachmentLink, imageUrl } = event;
 
 
-    const handleChange = (event) => {
+    const handleChange =  (event) => {
         // eslint-disable-next-line react/prop-types
         setChecked(event.target.checked);
         if (checked) {
-            createEventRecord(title, user);
+             deleteEventRecord(user, title);
+        } else {
+            createEventRecord(user, title);
         }
     };
-
+    console.log("checked: " +checked);
     return (
         <Card sx={{minWidth: 275, marginBottom: 2 }}>
             {imageUrl && (

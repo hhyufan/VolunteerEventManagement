@@ -53,8 +53,20 @@ export const getAllEventRecordsByVolunteerName = async (volunteerName) => {
         throw error;
     }
 };
+
+// 获取当前志愿者的所有活动记录
+export const getAllCompletedEventRecordsByVolunteerName = async (volunteerName) => {
+    try {
+        const response = await axios.get(`/api/event-records//completed/volunteer/${volunteerName}`);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching event records:', error);
+        throw error;
+    }
+};
+
 // 创建新的活动记录
-export const createEventRecord = async (eventName, volunteerName) => {
+export const createEventRecord = async (volunteerName, eventName) => {
     try {
         const requestBody = {
             eventName: eventName,
@@ -64,6 +76,32 @@ export const createEventRecord = async (eventName, volunteerName) => {
     } catch (error) {
         console.error('Error creating event record:', error);
         throw error; // 抛出错误以便调用者处理
+    }
+};
+
+// 删除活动记录
+export const deleteEventRecord = async (volunteerName, eventName) => {
+    try {
+        const encodedVolunteerName = encodeURIComponent(volunteerName);
+        const encodedEventName = encodeURIComponent(eventName);
+        await axios.delete(`/api/event-records/${encodedVolunteerName}/${encodedEventName}`);
+    } catch (error) {
+        console.error('Error deleting event record:', error);
+        throw error; // 抛出错误以便调用者处理
+    }
+};
+
+export const setEventCompletionStatus = async (volunteerName, eventName, completed) => {
+    try {
+        const encodedVolunteerName = encodeURIComponent(volunteerName);
+        const encodedEventName = encodeURIComponent(eventName);
+        const response = await axios.put(`/api/event-records/volunteer/${encodedVolunteerName}/event/${encodedEventName}`, null, {
+            params: {completed},
+        });
+        return response.data; // 返回响应数据
+    } catch (error) {
+        console.error("Error setting event completion status:", error);
+        throw error; // 抛出错误以便在调用时处理
     }
 };
 
