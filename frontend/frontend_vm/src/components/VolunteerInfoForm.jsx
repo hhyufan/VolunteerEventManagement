@@ -27,6 +27,7 @@ const AdminInfoForm = () => {
     const stampRef = useRef(null);
 
     // 假设这些是要显示的个人信息
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const loadAdmin = async () => {
         const currentGrade = await getGradeByName(user)
         const allGrades = await getGrade()
@@ -34,13 +35,9 @@ const AdminInfoForm = () => {
         setGrade(currentGrade)
         setIcon(getIconForGrade(currentGrade?.toDuration(), allGrades?.toDuration()))
         setVolunteer(data);
-        setTimeout(() => {
-            // 1s后激活 stamp 元素
-            if (stampRef.current) {
-                console.log(stampRef.current);
-                stampRef.current.classList.add('active');
-            }
-        }, 1000);
+        setTimeout(
+            () => stampRef.current && stampRef.current.classList.add('active')
+            , 1000);
 
 
     };
@@ -61,7 +58,7 @@ const AdminInfoForm = () => {
 
     useEffect(() => {
         loadAdmin()
-    }, []);
+    }, [loadAdmin]);
     return (
 
         <Paper
@@ -82,8 +79,7 @@ const AdminInfoForm = () => {
                 <Divider />
                 <ListItem>
                     <ListItemText primary="总志愿时长" secondary={grade}/>
-                    <img src={icon.toString()} className="stamp" ref={stampRef} alt="Total Volunteer Hours"
-                         style={{width: '36px', height: '36px'}}/>
+                    <img src={icon.toString()} className="stamp" ref={stampRef} alt="Grade seal"/>
                 </ListItem>
             </List>
         </Paper>
