@@ -3,8 +3,10 @@ package com.example.controller;
 import com.example.domain.Event;
 import com.example.dto.EventDTO;
 import com.example.service.EventService;
+import com.example.util.DurationToStringConverter;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,5 +48,10 @@ public class EventController {
         eventService.deleteEvent(id);
     }
 
-
+    @GetMapping("/grade")
+    public String getGrades() {
+        return DurationToStringConverter.convertToString(
+                Duration.ofSeconds(eventService.getAllEventsGrade())
+        );
+    }
 }

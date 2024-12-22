@@ -54,6 +54,10 @@ Accept: application/json
 GET http://localhost:8080/api/events/1
 Accept: application/json
 
+### 获取所有活动时长
+GET http://localhost:8080/api/events/grade
+Accept: application/json
+
 ### 创建新活动
 POST http://localhost:8080/api/events
 Content-Type: application/json

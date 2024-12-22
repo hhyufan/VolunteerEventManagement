@@ -69,6 +69,16 @@ export const getGradeByName = async (name) => {
     }
 };
 
+export const getGrade = async () => {
+    try {
+        const response = await axios.get(`/api/events/grade`);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching volunteer by name:', error);
+        throw error;
+    }
+};
+
 // 获取当前志愿者的所有活动记录
 export const getAllEventRecordsByVolunteerName = async (volunteerName) => {
     try {
@@ -130,4 +140,5 @@ export const setEventCompletionStatus = async (volunteerName, eventName, complet
         throw error; // 抛出错误以便在调用时处理
     }
 };
+
 

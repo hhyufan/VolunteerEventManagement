@@ -18,6 +18,14 @@ public class EventService {
         return eventMapper.findAll();
     }
 
+    public Long getAllEventsGrade() {
+        Long durations = 0L;
+        for (Event event : getAllEvents()) {
+            durations += event.getDuration();
+        }
+        return durations;
+    }
+
     public Event getEventById(Long id) {
         return eventMapper.findById(id);
     }
@@ -36,5 +44,7 @@ public class EventService {
     public void deleteEvent(Long id) {
         eventMapper.delete(id);
     }
+
+
 
 }
