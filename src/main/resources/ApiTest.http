@@ -59,28 +59,28 @@ GET http://localhost:8080/api/events/grade
 Accept: application/json
 
 ### 创建新活动
-POST http://localhost:8080/api/events
+POST http://localhost:8088/api/events
 Content-Type: application/json
 
 {
   "title": "新年爆竹安全活动",
   "date": "2024-01-01T10:00:00",
   "location": "公园",
-  "duration": "3小时",
+  "duration": 543354,
   "content": "新年志愿者活动，欢迎大家参与！",
   "attachmentLink": "http://example.com/attachment1",
   "imageUrl": "http://example.com/image1.jpg"
 }
 
 ### 更新活动
-PUT http://localhost:8080/api/events/4
+PUT http://localhost:8088/api/events/140
 Content-Type: application/json
 
 {
   "title": "新年爆竹安全活动",
-  "date": "2024-01-01T10:00:00",
-  "location": "公园",
-  "duration": "3小时",
+  "date": "2024-12-23T22:27:00",
+  "location": "公",
+  "duration": 543354,
   "content": "防范爆竹安全，人人有责。欢迎大家参与！",
   "attachmentLink": "http://example.com/attachment1",
   "imageUrl": "4.jpg"

@@ -12,7 +12,7 @@ logging:
     root: INFO  # 设置根日志级别
     com.example.demo: DEBUG  # 设置特定包的日志级别
 server:
-  port: 8080  # 指定应用程序运行的端口
+  port: 8088  # 指定应用程序运行的端口
 mybatis:
   mapper-locations: classpath:mapper/*.xml  # 指定 MyBatis XML Mapper 文件位置
   type-aliases-package: com.example.domain  # 指定实体类包
